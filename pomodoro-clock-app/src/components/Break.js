@@ -2,13 +2,16 @@ import React from "react"
 
 function Break(props) {
     const decreaseCounter = () => {
-        if (props.breakLength === 1)
+        console.log(props.break)
+        if (props.break === 1) {
             return
+        }
+        props.decreaseBreak()
     }
 
     const increaseCounter = () => {
-        if (props.breakLength === 60) {
-            return
+        if (props.break === 60) {
+            return;
         }
         props.increaseBreak()
     }
