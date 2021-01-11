@@ -18,16 +18,17 @@ function SessionLength(props) {
     return (
         <div><h4 className="text-center my-3">Session Length</h4>
             <section className="d-flex mx-5 align-items-center">
-                <button
-                    disabled={props.isPlay === true ? "disabled" : ""}
-                    onClick={decreaseSession} type="button"
-                    className="btn btn-primary mx-3">Down</button>
-                <p className="mx-2">{props.sessionLength}</p>
-                <button
-                    disabled={props.isPlay === true ? "disabled" : ""}
-                    onClick={increaseSession} type="button"
-                    className="btn btn-primary mx-3">Up</button>
-
+                <div className="d-flex flex-row align-itens-center justify-content-center">
+                    <button
+                        disabled={props.isPlay === true ? "disabled" : ""}
+                        onClick={decreaseSession} type="button"
+                        className="btn btn-primary mx-3">Down</button>
+                    <p className="mx-2 mt-3">{props.sessionLength}</p>
+                    <button
+                        disabled={props.isPlay === true ? "disabled" : ""}
+                        onClick={increaseSession} type="button"
+                        className="btn btn-primary mx-3">Up</button>
+                </div>
             </section>
         </div>
     )

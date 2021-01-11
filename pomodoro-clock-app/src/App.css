@@ -1,1 +1,11 @@
+body {
+    background-color: #eee2dc;
+}
 
+h4, h2 {
+    color: #123c69;
+}
+
+.btn {
+    background-color: #ac3b61;
+}

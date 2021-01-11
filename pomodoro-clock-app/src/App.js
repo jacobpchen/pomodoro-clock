@@ -96,7 +96,7 @@ class App extends React.Component {
     return (
       <main className="container d-flex flex-column justify-content-center align-items-center my-5">
         <h2 className="font-weight-bold">Pomodoro Clock</h2>
-        <div className="d-flex">
+        <div className="d-flex align-items-center">
           <Break
             break={this.state.breakLength}
             increaseBreak={this.onIncreaseBreakLength}
