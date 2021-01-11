@@ -8,11 +8,14 @@ class Timer extends React.Component {
             timerSecond: 0,
             intervalId: 0
         }
-        this.play = this.play.bind(this)
+        this.playTimer = this.playTimer.bind(this)
         this.decreaseTimer = this.decreaseTimer.bind(this)
+        this.stopTimer = this.stopTimer.bind(this)
+        this.resetTimer = this.resetTimer.bind(this)
     }
 
-    play = () => {
+    playTimer = () => {
+        this.props.onPlayStopTimer(true)
         let intervalId = setInterval(this.decreaseTimer, 1000)
 
         this.setState({
@@ -20,13 +23,32 @@ class Timer extends React.Component {
         })
     }
 
+    stopTimer = () => {
+        clearInterval(this.state.intervalId)
+        this.props.onPlayStopTimer(false)
+    }
+
     decreaseTimer = () => {
         switch (this.state.timerSecond) {
             case 0:
-                this.props.decreaseTimerMinute()
-                this.setState({
-                    timerSecond: 59
-                })
+                if (this.props.timerMinute === 0) {
+                    if (this.state.isSession) {
+                        this.setState({
+                            isSession: false
+                        })
+                        this.props.toggleInterval(this.state.isSession)
+                    } else {
+                        this.setState({
+                            isSession: true
+                        })
+                        this.props.toggleInterval(this.state.isSession)
+                    }
+                } else {
+                    this.props.decreaseTimerMinute()
+                    this.setState({
+                        timerSecond: 59
+                    })
+                }
                 break;
             default:
                 this.setState(prevState => {
@@ -38,6 +60,19 @@ class Timer extends React.Component {
         }
     }
 
+    resetTimer = () => {
+        this.stopTimer()
+        this.props.resetTimer()
+        this.props.onPlayStopTimer(false)
+        this.setState({
+            timerSecond: 0,
+            isSession: true
+        })
+    }
+
+    onPlayStopTimer() {
+        this.props.onPlayStopTimer()
+    }
 
     render() {
         return (
@@ -54,9 +89,9 @@ class Timer extends React.Component {
                     </section>
                 </section>
                 <div>
-                    <button onClick={this.play} type="button" className="btn btn-primary mx-3">Play</button>
-                    <button onClick={this.stop} type="button" className="btn btn-primary mx-3">Stop</button>
-                    <button onClick={this.reset} type="button" className="btn btn-primary mx-3">Refresh</button>
+                    <button onClick={this.playTimer} type="button" className="btn btn-primary mx-3">Play</button>
+                    <button onClick={this.stopTimer} type="button" className="btn btn-primary mx-3">Stop</button>
+                    <button onClick={this.resetTimer} type="button" className="btn btn-primary mx-3">Refresh</button>
                 </div>
             </div>
         )
