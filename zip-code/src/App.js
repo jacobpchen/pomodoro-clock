@@ -12,12 +12,13 @@ class App extends React.Component {
       count: 0,
       zipCodes: [],
       cities: [],
-      cityName: ''
+      cityName: '',
+      didReload: false
     }
   }
 
   getZip = (zip) => {
-    zip.preventDefault()
+
     let zipcode = zip.target.userEnteredZip.value
     if (zipcode.length !== 5 && (typeof zipcode) !== 'number') {
       console.error("Zipcode is not recognizable. Please try again")
@@ -49,9 +50,8 @@ class App extends React.Component {
           cityName: cityName
         })
       })
-
-
   }
+
 
   render() {
     return (
@@ -76,6 +76,7 @@ class App extends React.Component {
             <input className="mx-3" type="submit" value="Submit" />
           </form>
         </div>
+
         <div className="d-flex flex-column justify-content-center align-items-center">
           {this.state.zipCodes.map(data =>
             <div key={data.RecordNumber}
