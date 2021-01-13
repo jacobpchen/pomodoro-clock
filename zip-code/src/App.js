@@ -25,7 +25,7 @@ class App extends React.Component {
     }
     // do fetch call in here
     console.log('http://ctp-zip-api.herokuapp.com/zip/' + zipcode)
-    axios.get('http://ctp-zip-api.herokuapp.com/zip/' + zipcode)
+    axios.get('https://ctp-zip-api.herokuapp.com/zip/' + zipcode)
       .then(response => {
         const apiResponse = response.data
         console.log(apiResponse)
@@ -38,7 +38,7 @@ class App extends React.Component {
   getCity = (city) => {
     city.preventDefault()
     let cityName = city.target.userEnteredCity.value.toString().toUpperCase()
-    const API_ENDPOINT = "http://ctp-zip-api.herokuapp.com/city/"
+    const API_ENDPOINT = "https://ctp-zip-api.herokuapp.com/city/"
     console.log()
     axios.get(API_ENDPOINT + cityName.toString().toUpperCase())
       .then(response => {
